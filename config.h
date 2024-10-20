@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "terminus:size=9" };
-static const char dmenufont[]       = "terminus:size=9";
+static const char *fonts[]          = { "terminus:size=12" };
+static const char dmenufont[]       = "terminus:size=12";
 static const char col_gray1[]       = "#202020";
 static const char col_gray2[]       = "#404040";
 static const char col_gray3[]       = "#c0c0c0";
@@ -59,6 +59,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-fn", "terminus",  NULL };
 static const char *termcmd[]  = { "xterm", NULL };
 static const char *scr[] = { "flameshot", "gui", NULL };
+static const char *upvol[] = { "mixer", "vol.volume=+5%", NULL };
+static const char *downvol[] = { "mixer", "vol.volume=-5%", NULL };
+static const char *mutevol[] = { "mixer", "vol.mute=toggle", NULL };
+static const char *upblight[] = { "backlight", "incr", NULL };
+static const char *downblight[] = { "backlight", "decr", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -95,7 +100,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ControlMask,           XK_q,      quit,           {0} },
-	{ 0,		                0xff61,	spawn,		    {.v = scr } }, 
+	{ 0,		                0xff61,	spawn,		    {.v = scr } },
+	{ 0,		                0x1008ff13,	spawn,		    {.v = upvol } }, 
+	{ 0,		                0x1008ff11,	spawn,		    {.v = downvol } }, 
+	{ 0,		                0x1008ff12,	spawn,		    {.v = mutevol } },
+	{ 0,		                0xffc3,	spawn,		        {.v = upblight } },
+	{ 0,		                0xffc2,	spawn,		        {.v = downblight } },
 };
 
 /* button definitions */
